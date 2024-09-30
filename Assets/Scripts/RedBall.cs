@@ -38,9 +38,8 @@ public class RedBall : MonoBehaviour
         if (collision.gameObject.CompareTag("Wall") || collision.gameObject.CompareTag("GreenBall"))
         {
         
-
-            direction = Vector2.Reflect(direction, collision.contacts[0].normal);
-
+            ReactCollision(collision);
+        
         }
 
         if (collision.gameObject.CompareTag("Player"))
@@ -49,10 +48,13 @@ public class RedBall : MonoBehaviour
         }
     }
 
+    public virtual void ReactCollision(Collision2D collision)
+    {
+        direction = Vector2.Reflect(direction, collision.contacts[0].normal);
+    }
+
     public void Spawn()
     {
-
-
         transform.position = new Vector2(Random.Range(-9f, 9f), Random.Range(-4f, 4f));
         direction = Random.insideUnitCircle.normalized;
     }

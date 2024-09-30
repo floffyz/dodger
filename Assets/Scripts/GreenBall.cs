@@ -11,10 +11,14 @@ public class GreenBall : MonoBehaviour
     public GameObject redBallRef;
     public GameObject redBall2Ref;
 
+    public float timer;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         Spawn();
+        
+        
     }
 
     private void FixedUpdate()

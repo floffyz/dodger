@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 2351378446111853883}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.56, y: 2.8, z: 0}
+  m_LocalPosition: {x: 7.6724286, y: 2.3351517, z: 0}
   m_LocalScale: {x: 0.21895285, y: 0.21895285, z: 0.21895285}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -100,9 +100,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 3
-  player: {fileID: 0}
+  direction: {x: -0.9967615, y: 0.08041431}
+  rb: {fileID: 0}
   crazy: 0
-  crazySprite: {fileID: 21300000, guid: ed5ed3c3e446c7648b8d7bfd58f46216, type: 3}
 --- !u!58 &7814827975438799732
 CircleCollider2D:
   m_ObjectHideFlags: 0
