@@ -37,6 +37,8 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
+
+
         if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
@@ -87,34 +89,22 @@ public class GameManager : MonoBehaviour
 
 
 
-            timeLeftText.text = "timeleft " + (30 - timer);
+            timeLeftText.text = (30 - timer).ToString();
 
 
-        }
-
-        if (Input.GetKeyDown("r"))
-        {
-            PlayerPrefs.SetInt("highscore", 0);
-            highScore = 0;
         }
 
 
         if (secondSceneTimerStarted)
         {
             secondSceneTimer += Time.deltaTime;
-            timeLeftText.text = "timeleft " + (30 - Mathf.RoundToInt(secondSceneTimer));
+            timeLeftText.text = (30 - Mathf.RoundToInt(secondSceneTimer)).ToString();
             if (secondSceneTimer > 10f) 
             {
                 secondSceneTimerStarted = false;
                 SceneManager.LoadScene("FinishedScene");
             }
         }
-
-
-        print(highScore);
-
-
-
 
     }
 
@@ -183,9 +173,11 @@ public class GameManager : MonoBehaviour
     {
         startTimer = Time.time;
         timerStarted = true;
+
         sceneChanged = false;
         over = false;
         score = 0;
+        scoreText.enabled = true;
     }
 
     public void Score(GreenBall greenBall)
@@ -198,7 +190,8 @@ public class GameManager : MonoBehaviour
     public void GameOver()
     {
         over = true;
-        timerStarted = false; 
+        timerStarted = false;
+        secondSceneTimerStarted = false;
         restartButton.SetActive(true);
         gameOverText.text = "GAME OVER!";
         if (score > PlayerPrefs.GetInt("highscore"))
@@ -223,7 +216,7 @@ public class GameManager : MonoBehaviour
         ResetGame();
     }
 
-    private void ResetGame()
+    public void ResetGame()
     {
        
         StartGame();

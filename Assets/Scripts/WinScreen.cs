@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class WinScreen : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class WinScreen : MonoBehaviour
 
     void Start()
     {
+
+        GameManager.Instance.scoreText.enabled = false;
         if (GameManager.Instance.score > PlayerPrefs.GetInt("highscore"))
         {
 
@@ -25,6 +28,16 @@ public class WinScreen : MonoBehaviour
         }
 
         print(GameManager.Instance.score + " | " + PlayerPrefs.GetInt("highscore"));
-// score.text = "SCORE: " + GameManager.Instance.score;
+
     }
+
+
+    public void Restart()
+    {
+
+        SceneManager.LoadScene("MainScene");
+
+        GameManager.Instance.ResetGame();
+    }
+
 }

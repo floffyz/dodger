@@ -7,8 +7,8 @@ using TMPro;
 public class MenuController : MonoBehaviour
 {
 
+
     public TextMeshProUGUI highScoreText;
-    private int highScore;
 
     public void Start()
     {
@@ -18,7 +18,6 @@ public class MenuController : MonoBehaviour
     public void StartGame()
     {
         SceneManager.LoadScene("MainScene");
-       // GameManager.Instance.StartGame();
     }
 
 
