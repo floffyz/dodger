@@ -6,25 +6,34 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
-    public GreenBall greenBall; // Referência da GreenBall
+    public GameObject redBall2Ref;  
+    public GameObject redBallRef;
 
-    public GameObject redBall2Ref;  // Referência para a bola vermelha alternativa
-    public GameObject redBallRef;   // Referência para a bola vermelha
+    public GameObject powerUpRef;
 
     public GameObject restartButton;
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI gameOverText;
+    public TextMeshProUGUI timeLeftText;
+
+    public int highScore;
+
 
     private float startTimer;
     private bool timerStarted = false;
     private bool sceneChanged = false;
 
+    private bool powerUpSpawned = false;
+
     public int score = 0;
     public bool over;
 
-    // Variáveis para o segundo timer na cena 2
     private float secondSceneTimer;
     private bool secondSceneTimerStarted = false;
+
+
+    public delegate void PowerUp();
+    public static PowerUp PoweredUp;    
 
     private void Awake()
     {
@@ -42,103 +51,132 @@ public class GameManager : MonoBehaviour
         StartGame();
     }
 
+
+
+
     private void Start()
     {
         over = false;
         restartButton.SetActive(false);
         gameOverText.gameObject.SetActive(false);
+        //newHighScore = false;
+        highScore = PlayerPrefs.GetInt("highscore", 0);
 
-        // Spawnar a GreenBall na cena inicial
-        greenBall?.Spawn();
 
-        // Spawnar a bola vermelha ao iniciar o jogo
-        SpawnRedBall();
     }
 
     private void Update()
     {
-        // Somente conte o tempo se o jogo não estiver acabado
+
+       
         if (timerStarted && !sceneChanged && !over)
         {
             int timer = Mathf.RoundToInt(Time.time - startTimer);
             scoreText.text = "Score: " + score;
 
-            if (timer >= 6) // Alterar para 30 segundos conforme solicitado
+            if (timer >= 5f) 
             {
                 sceneChanged = true;
                 SceneManager.LoadScene("Scene2");
             }
+
+            if (timer == 5f && !powerUpSpawned)
+            {
+                SpawnPowerUp();
+            }
+
+
+
+            timeLeftText.text = "timeleft " + (30 - timer);
+
+
         }
 
-        // Lógica para o segundo timer na cena 2
+        if (Input.GetKeyDown("r"))
+        {
+            PlayerPrefs.SetInt("highscore", 0);
+            highScore = 0;
+        }
+
+
         if (secondSceneTimerStarted)
         {
-            secondSceneTimer += Time.deltaTime; // Aumenta o timer com o tempo
-
-            if (secondSceneTimer >= 7f) // Após 30 segundos
+            secondSceneTimer += Time.deltaTime;
+            timeLeftText.text = "timeleft " + (30 - Mathf.RoundToInt(secondSceneTimer));
+            if (secondSceneTimer > 10f) 
             {
-                Debug.Log("30 seconds passed in Scene 2, changing to FinishedScene...");
+                secondSceneTimerStarted = false;
                 SceneManager.LoadScene("FinishedScene");
             }
         }
+
+
+        print(highScore);
+
+
+
+
+    }
+
+    private void SpawnPowerUp()
+    {
+        Vector3 spawnPosition = new Vector3(0, 0, 0);
+
+        GameObject spawnedPowerUp;
+        spawnedPowerUp = Instantiate(powerUpRef, spawnPosition, Quaternion.identity);
+        spawnedPowerUp.transform.position = new Vector2(Random.Range(-9f, 9f), Random.Range(-4f, 4f));
+
+        powerUpSpawned = true;
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         if (scene.name == "Scene2")
         {
-            greenBall = FindObjectOfType<GreenBall>();
+            GreenBall greenBall = FindObjectOfType<GreenBall>();
             greenBall?.Spawn();
 
-            // Tentar spawnar a bola vermelha novamente
-            Debug.Log("Cena 2 carregada. Tentando spawnar a bola vermelha...");
+           
             SpawnRedBall();
 
-            // Iniciar o segundo timer
-            secondSceneTimer = 0f; // Reseta o timer
-            secondSceneTimerStarted = true; // Inicia o timer da cena 2
+            secondSceneTimer = 0f; 
+            secondSceneTimerStarted = true;
+        }
+
+        if (scene.name == "MainScene")
+        {
+            GreenBall greenBall = FindObjectOfType<GreenBall>();
+            greenBall?.Spawn();
+
+            SpawnRedBall();
         }
     }
 
+
+
     private void SpawnRedBall()
     {
-        if (redBallRef == null || redBall2Ref == null)
-        {
-            Debug.LogError("Referências para as bolas vermelhas não foram atribuídas!");
-            return;
-        }
+       
 
-        // Imprimir todos os GameObjects na cena para debug
-        Debug.Log("GameObjects na cena:");
-        foreach (GameObject obj in GameObject.FindObjectsOfType<GameObject>())
-        {
-            Debug.Log(obj.name);
-        }
+            Vector3 spawnPosition = new Vector3(0, 0, 0); 
 
-        // Verifica se já existe uma bola vermelha na cena
-        if (GameObject.Find("RedBall") == null && GameObject.Find("RedBall2") == null)
-        {
-            Vector3 spawnPosition = new Vector3(0, 0, 0); // Defina uma posição no centro da tela
 
-            // Escolhe aleatoriamente qual bola instanciar
+
+          
             GameObject spawnedRedBall;
             if (Random.Range(0, 2) == 0)
             {
                 spawnedRedBall = Instantiate(redBall2Ref, spawnPosition, Quaternion.identity);
-                spawnedRedBall.name = "RedBall2"; // Nome para identificação
-                Debug.Log($"Bola vermelha {spawnedRedBall.name} spawnada em {spawnPosition}");
+               
             }
             else
             {
                 spawnedRedBall = Instantiate(redBallRef, spawnPosition, Quaternion.identity);
-                spawnedRedBall.name = "RedBall"; // Nome para identificação
-                Debug.Log($"Bola vermelha {spawnedRedBall.name} spawnada em {spawnPosition}");
+
             }
-        }
-        else
-        {
-            Debug.Log("Uma bola vermelha já existe na cena.");
-        }
+               
+
+       
     }
 
     public void StartGame()
@@ -146,21 +184,29 @@ public class GameManager : MonoBehaviour
         startTimer = Time.time;
         timerStarted = true;
         sceneChanged = false;
-        over = false; // Certificar-se de que o jogo não está no estado de Game Over
+        over = false;
+        score = 0;
     }
 
     public void Score(GreenBall greenBall)
     {
         score++;
-        scoreText.text = "Score: " + score; // Atualiza o texto do score
+        scoreText.text = "Score: " + score; 
         StartCoroutine(greenBall.Respawn());
     }
 
     public void GameOver()
     {
         over = true;
-        timerStarted = false; // Pausa o timer no Game Over
+        timerStarted = false; 
         restartButton.SetActive(true);
+        gameOverText.text = "GAME OVER!";
+        if (score > PlayerPrefs.GetInt("highscore"))
+        {
+            PlayerPrefs.SetInt("highscore", score);
+            PlayerPrefs.Save();
+            gameOverText.text = gameOverText.text + "\nNEW HIGHSCORE: " + score;
+        }
         gameOverText.gameObject.SetActive(true);
     }
 
@@ -171,29 +217,25 @@ public class GameManager : MonoBehaviour
 
     public void Restart()
     {
-        // Reiniciar a cena atual
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        // Reiniciar o timer e variáveis relacionadas
+        
+        SceneManager.LoadScene("MainScene");
+       
         ResetGame();
     }
 
     private void ResetGame()
     {
-        // Reiniciar as variáveis importantes
-        StartGame(); // Reinicia o timer e o controle de troca de cena
-        score = 0; // Reinicia o score
+       
+        StartGame();
+        powerUpSpawned = false;
         restartButton.SetActive(false);
         gameOverText.gameObject.SetActive(false);
-
-        // Certifique-se de que as bolas estão sendo respawnadas
-        greenBall.Spawn(); // Spawn da GreenBall novamente
-
-        Debug.Log("Tentando respawnar a bola vermelha no Restart...");
-        SpawnRedBall(); // Spawn da RedBall novamente
     }
 
     private void OnDestroy()
     {
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
+
+
 }

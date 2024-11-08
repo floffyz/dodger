@@ -1,4 +1,5 @@
 using UnityEngine;
+using static GameManager;
 
 public class PlayerController : MonoBehaviour
 {
@@ -44,5 +45,20 @@ public class PlayerController : MonoBehaviour
             animator.SetBool("dead", true);
         }
         
+    }
+
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("PowerUp"))
+        {
+            if (GameManager.PoweredUp != null)
+            {
+                GameManager.PoweredUp();
+                Destroy(collision.gameObject);
+            }
+
+            //Destroy(collision.gameObject);
+        }
     }
 }
