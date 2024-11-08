@@ -87,11 +87,7 @@ public class RedBall : MonoBehaviour
     {
 
         spriteRenderer.transform.localScale /= 2;
-
-
-        await WaitForSecondsAsync(3f);
-
-
+        await WaitForSecondsAsync(10f);
         spriteRenderer.transform.localScale = originalScale;
 
     }

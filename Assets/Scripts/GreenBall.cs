@@ -85,12 +85,15 @@ public class GreenBall : MonoBehaviour
     public IEnumerator Respawn()
     {
 
-        if (gameObject != null)
-        { 
-            gameObject.SetActive(false); 
-            yield return new WaitForSeconds(0.5f); 
+        gameObject.SetActive(false); 
+
+        yield return new WaitForSeconds(0.5f);
+
+        if (rb != null)
+        {
             Spawn();
             gameObject.SetActive(true); 
+
         }
 
     }

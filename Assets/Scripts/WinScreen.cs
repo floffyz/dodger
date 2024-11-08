@@ -14,6 +14,7 @@ public class WinScreen : MonoBehaviour
     {
 
         GameManager.Instance.scoreText.enabled = false;
+        GameManager.Instance.timeLeftText.enabled = false;
 
         if (GameManager.Instance.score > PlayerPrefs.GetInt("highscore"))
         {

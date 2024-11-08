@@ -339,7 +339,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 46.6
+  m_fontSize: 56.45
   m_fontSizeBase: 30
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -577,7 +577,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -68.61719, y: -21.701477, z: -68.603165, w: -25.720303}
+  m_margin: {x: -57.807205, y: -21.701477, z: -68.603165, w: -25.720303}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -675,7 +675,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 44.7
+  m_fontSize: 52.25
   m_fontSizeBase: 30
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -858,7 +858,7 @@ Transform:
   m_GameObject: {fileID: 807515971}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 10.67, y: 0.11, z: 0}
+  m_LocalPosition: {x: 10.14, y: 0.11, z: 0}
   m_LocalScale: {x: 1.7469386, y: 10.964915, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1016,7 +1016,7 @@ Transform:
   m_GameObject: {fileID: 815086742}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -10.07, y: 0, z: 0}
+  m_LocalPosition: {x: -9.42, y: 0.35, z: 0}
   m_LocalScale: {x: 1.7469386, y: 10.964915, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1174,7 +1174,7 @@ Transform:
   m_GameObject: {fileID: 835872015}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.7, y: -4.6248, z: -0.044657253}
+  m_LocalPosition: {x: 0.7, y: -5, z: -0.044657253}
   m_LocalScale: {x: 23.47073, y: -1.4282999, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1351,7 +1351,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   redBall2Ref: {fileID: 9206404327372541955, guid: 4a63791efd8c37c49b7b5ea239b8a71d, type: 3}
   redBallRef: {fileID: 2351378446111853883, guid: 51e9a35e1de083342974bcf175ce593c, type: 3}
-  powerUpRef: {fileID: 826522831182530122, guid: 65d4e88db43f65d4b87257af8f4f99a2, type: 3}
   restartButton: {fileID: 164151911}
   scoreText: {fileID: 501163340}
   gameOverText: {fileID: 1395882932}
@@ -1359,6 +1358,7 @@ MonoBehaviour:
   highScore: 0
   score: 0
   over: 0
+  powerUpRef: {fileID: 826522831182530122, guid: 65d4e88db43f65d4b87257af8f4f99a2, type: 3}
 --- !u!1 &1242500136
 GameObject:
   m_ObjectHideFlags: 0
@@ -1946,7 +1946,7 @@ Transform:
   m_GameObject: {fileID: 1845305233}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.7, y: 5.73, z: -0.044657253}
+  m_LocalPosition: {x: 0.7, y: 6.12, z: -0.044657253}
   m_LocalScale: {x: 23.47073, y: 0.78207296, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

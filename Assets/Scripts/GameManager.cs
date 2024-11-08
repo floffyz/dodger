@@ -74,7 +74,7 @@ public class GameManager : MonoBehaviour
             int timer = Mathf.RoundToInt(Time.time - startTimer);
             scoreText.text = "Score: " + score;
 
-            if (timer >= 5f) 
+            if (timer >= 30f) 
             {
 
                 sceneChanged = true;
@@ -82,7 +82,7 @@ public class GameManager : MonoBehaviour
 
             }
 
-            if (timer == 5f && !powerUpSpawned)
+            if (timer == 10f && !powerUpSpawned)
             {
 
                 SpawnPowerUp();
@@ -182,6 +182,7 @@ public class GameManager : MonoBehaviour
         over = false;
         score = 0;
         scoreText.enabled = true;
+        timeLeftText.enabled = true;
 
     }
 

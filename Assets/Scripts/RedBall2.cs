@@ -15,8 +15,8 @@ public class RedBall2 : RedBall
         player = GameObject.Find("player").GetComponent<PlayerController>();
 
     }
-    
-    
+
+
     public override void ReactCollision(Collision2D collision)
     {
 
@@ -24,8 +24,10 @@ public class RedBall2 : RedBall
 
     }
 
+
     private void OnCollisionStay2D(Collision2D collision)
     {
+
         direction = (player.rb.position - rb.position).normalized;
 
     }
