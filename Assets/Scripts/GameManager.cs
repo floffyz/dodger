@@ -30,6 +30,9 @@ public class GameManager : MonoBehaviour
     public delegate void PowerUp();
     public static PowerUp PoweredUp;    
 
+    public delegate void disableRb();
+    public static disableRb disabledRb;
+
 
     private void Awake()
     {
@@ -201,6 +204,7 @@ public class GameManager : MonoBehaviour
     {
 
         over = true;
+        
         timerStarted = false;
         secondSceneTimerStarted = false;
         restartButton.SetActive(true);
@@ -216,6 +220,11 @@ public class GameManager : MonoBehaviour
         }
 
         gameOverText.gameObject.SetActive(true);
+
+        if (disabledRb != null)
+        {
+            disabledRb();
+        }
 
     }
 

@@ -27,7 +27,7 @@ public class WinScreen : MonoBehaviour
         else
         {
 
-            score.text = "SCORE: " + GameManager.Instance.score;
+            score.text = "SCORE: " + GameManager.Instance.score + "\nHIGHSCORE: " + PlayerPrefs.GetInt("highscore");
 
         }
 

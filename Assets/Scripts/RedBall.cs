@@ -23,6 +23,11 @@ public class RedBall : MonoBehaviour
 
     }
 
+    private void OnDisable()
+    {
+        GameManager.PoweredUp -= PowerUp;
+    }
+
 
     public virtual void BallInit()
     {
@@ -77,7 +82,7 @@ public class RedBall : MonoBehaviour
     public void Spawn()
     {
 
-        transform.position = new Vector2(UnityEngine.Random.Range(-9f, 9f), UnityEngine.Random.Range(-4f, 4f));
+        transform.position = new Vector2(UnityEngine.Random.Range(-8f, 8f), UnityEngine.Random.Range(-4f, 4f));
         direction = UnityEngine.Random.insideUnitCircle.normalized;
 
     }
@@ -85,12 +90,21 @@ public class RedBall : MonoBehaviour
 
     public async void PowerUp()
     {
-
-        spriteRenderer.transform.localScale /= 2;
+        if (spriteRenderer != null)
+        {
+            spriteRenderer.transform.localScale /= 2;
+        }
+            
         await WaitForSecondsAsync(10f);
-        spriteRenderer.transform.localScale = originalScale;
+        if (spriteRenderer != null) //posso morrer nestes 10 segundos
+        {
+            spriteRenderer.transform.localScale = originalScale;
+        }
+        
 
     }
+
+
 
 
     async Task WaitForSecondsAsync(float delay)

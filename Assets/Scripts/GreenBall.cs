@@ -75,7 +75,7 @@ public class GreenBall : MonoBehaviour
         if (rb != null)
         {
 
-            transform.position = new Vector2(Random.Range(-9f, 9f), Random.Range(-4f, 4f));
+            transform.position = new Vector2(Random.Range(-8f, 8f), Random.Range(-4f, 4f));
             direction = Random.insideUnitCircle.normalized;
 
         }
