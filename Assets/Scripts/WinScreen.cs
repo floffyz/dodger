@@ -14,20 +14,21 @@ public class WinScreen : MonoBehaviour
     {
 
         GameManager.Instance.scoreText.enabled = false;
+
         if (GameManager.Instance.score > PlayerPrefs.GetInt("highscore"))
         {
 
             PlayerPrefs.SetInt("highscore", GameManager.Instance.score);
             PlayerPrefs.Save();
-            
             score.text = "NEW HIGHSCORE: " + GameManager.Instance.score;
+
         }
         else
         {
-            score.text = "SCORE: " + GameManager.Instance.score;
-        }
 
-        print(GameManager.Instance.score + " | " + PlayerPrefs.GetInt("highscore"));
+            score.text = "SCORE: " + GameManager.Instance.score;
+
+        }
 
     }
 
@@ -36,8 +37,8 @@ public class WinScreen : MonoBehaviour
     {
 
         SceneManager.LoadScene("MainScene");
-
         GameManager.Instance.ResetGame();
+
     }
 
 }
