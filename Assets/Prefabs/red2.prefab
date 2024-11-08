@@ -53,6 +53,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1969295411269268037, guid: 51e9a35e1de083342974bcf175ce593c, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: 935f10c0fa62dc3429465f2b187c24f6, type: 2}
+    - target: {fileID: 1969295411269268037, guid: 51e9a35e1de083342974bcf175ce593c, type: 3}
       propertyPath: m_Constraints
       value: 4
       objectReference: {fileID: 0}
@@ -64,6 +68,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: ed5ed3c3e446c7648b8d7bfd58f46216, type: 3}
+    - target: {fileID: 7814827975438799732, guid: 51e9a35e1de083342974bcf175ce593c, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: 935f10c0fa62dc3429465f2b187c24f6, type: 2}
     m_RemovedComponents:
     - {fileID: 7982315833837260981, guid: 51e9a35e1de083342974bcf175ce593c, type: 3}
     m_RemovedGameObjects: []

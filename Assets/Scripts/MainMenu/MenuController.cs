@@ -13,7 +13,7 @@ public class MenuController : MonoBehaviour
     public void Start()
     {
 
-        highScoreText.text = (PlayerPrefs.GetInt("highscore")).ToString();
+        highScoreText.text = (PlayerPrefs.GetInt("highscore"), 0).ToString();
 
     }
 
